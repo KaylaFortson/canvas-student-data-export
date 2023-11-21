@@ -1,4 +1,14 @@
 # built in
+import threading
+import _threading_local
+import yaml
+import json
+import os
+import string
+from tkinter import Tk
+import tkinter as tk
+import mysql.connector
+from tkinter.ttk import Progressbar
 import json
 import os
 import string
@@ -10,17 +20,6 @@ from tkinter.ttk import Progressbar
 import threading
 import sys
 
-# external
-from canvasapi import Canvas
-from canvasapi.exceptions import ResourceDoesNotExist, Unauthorized
-
-from singlefile import download_page
-
-import dateutil.parser
-import jsonpickle
-import requests
-import yaml
-import mysql.connector
 
 import shutil
 
@@ -1065,7 +1064,7 @@ def initDatabase():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="root",
+        passwd="",
         database="CPSTOPS"
     )
 
@@ -1144,7 +1143,7 @@ def addCredentialData(db, cursor, user_id, api_url, api_key, cookies_path, dl_lo
 
 if __name__ == "__main__":
     # Create a GUI window
-    root = tk.Tk()
+    root = Tk()
     root.geometry("900x700")
     root.title("Canvas Student Data Export Tool")
     font = ("Helvetica", 22)
