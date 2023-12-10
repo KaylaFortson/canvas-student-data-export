@@ -446,20 +446,16 @@ def findCoursePages(course):
 # Create a new Assignments table
 def createAssignmentsTable(db,cursor):
 
-   cursor.execute("CREATE TABLE assignments (assignID  int, courseID int,description varchar(10000))")
+   cursor.execute("CREATE TABLE assignments (assignID  int, courseID int,description longtext)")
 
    db.commit()
    return
 
 # Add Course Assignment to the Assignments table 
 def addCourseAssignemeToDB(db,cursor,course,assignment):
-    #print(cview.get_assignments())
     id = course.id
     assignID = assignment.id
-    #title = assignment.title
     description = assignment.description
-    #assigned_date = assignment.assigned_date
-    #due_date = assignment.due_date
 
     cursor.execute("INSERT INTO assignments (courseID, assignID, description) VALUES ( %s, %s, %s)", (assignID,id,description))
     db.commit()
