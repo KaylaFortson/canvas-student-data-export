@@ -1061,13 +1061,17 @@ def browse_folder():
 
 # Initializes the database connection
 def initDatabase():
-   
+
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
         passwd="root",
-        database="CPSTOPS"
     )
+
+    mycursor = mydb.cursor()
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS cpstops")
+
+    mydb.database = "CPSTOPS"
 
     return mydb
 
